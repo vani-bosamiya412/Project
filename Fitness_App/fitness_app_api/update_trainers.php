@@ -9,7 +9,7 @@
     $experience = $_POST['experience'] ?? '';
 
     if ($id) {
-        $stmt = $conn->prepare("UPDATE trainers SET name=?, email=?, phone=?, specialty=?, experience=? WHERE id=?");
+        $stmt = $con->prepare("UPDATE trainers SET name=?, email=?, phone=?, specialty=?, experience=? WHERE id=?");
         $stmt->bind_param("ssssii", $name, $email, $phone, $specialty, $experience, $id);
 
         if ($stmt->execute()) {

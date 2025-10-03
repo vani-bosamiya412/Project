@@ -5,7 +5,7 @@
     $status = $_POST['status'] ?? ''; 
 
     if ($id && in_array($status, ['approved','rejected'])) {
-        $stmt = $conn->prepare("UPDATE trainers SET status=? WHERE id=?");
+        $stmt = $con->prepare("UPDATE trainers SET status=? WHERE id=?");
         $stmt->bind_param("si", $status, $id);
 
         if ($stmt->execute()) {

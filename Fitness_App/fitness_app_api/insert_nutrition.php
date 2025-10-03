@@ -11,7 +11,7 @@
     $nutritionist_id = $_POST['nutritionist_id'] ?? '';
 
     if ($title && $calories && $duration_days && $nutritionist_id) {
-        $stmt = $conn->prepare("INSERT INTO nutrition_plans (title, description, calories, protein, carbs, fat, duration_days, nutritionist_id) 
+        $stmt = $con->prepare("INSERT INTO nutrition_plans (title, description, calories, protein, carbs, fat, duration_days, nutritionist_id) 
                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssiiiiii", $title, $description, $calories, $protein, $carbs, $fat, $duration_days, $nutritionist_id);
 

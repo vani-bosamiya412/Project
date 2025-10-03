@@ -12,7 +12,7 @@
     $nutritionist_id = $_POST['nutritionist_id'] ?? '';
 
     if ($id) {
-        $stmt = $conn->prepare("UPDATE nutrition_plans SET title=?, description=?, calories=?, protein=?, carbs=?, fat=?, duration_days=?, nutritionist_id=? WHERE id=?");
+        $stmt = $con->prepare("UPDATE nutrition_plans SET title=?, description=?, calories=?, protein=?, carbs=?, fat=?, duration_days=?, nutritionist_id=? WHERE id=?");
         $stmt->bind_param("ssiiiiiii", $title, $description, $calories, $protein, $carbs, $fat, $duration_days, $nutritionist_id, $id);
 
         if ($stmt->execute()) {

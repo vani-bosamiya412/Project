@@ -11,7 +11,7 @@
     $video_url = $_POST['video_url'] ?? '';
 
     if ($id) {
-        $stmt = $conn->prepare("UPDATE workouts SET title=?, description=?, category=?, difficulty=?, duration=?, trainer_id=?, video_url=? WHERE id=?");
+        $stmt = $con->prepare("UPDATE workouts SET title=?, description=?, category=?, difficulty=?, duration=?, trainer_id=?, video_url=? WHERE id=?");
         $stmt->bind_param("ssssissi", $title, $description, $category, $difficulty, $duration, $trainer_id, $video_url, $id);
 
         if ($stmt->execute()) {

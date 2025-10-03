@@ -4,9 +4,9 @@
     define('PASSWORD', '');
     define('DB_NAME', 'fitness_app');
 
-    $conn = mysqli_connect(HOST, USER, PASSWORD, DB_NAME) or die('Unable to Connect');
+    $con = mysqli_connect(HOST, USER, PASSWORD, DB_NAME) or die('Unable to Connect');
 
-    if($conn) {
+    if($con) {
         echo "Connection Successful";
     } else {
         echo "Connection Failed";

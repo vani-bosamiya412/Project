@@ -4,7 +4,7 @@
     $id = $_POST['id'] ?? '';
 
     if ($id) {
-        $stmt = $conn->prepare("DELETE FROM trainers WHERE id=?");
+        $stmt = $con->prepare("DELETE FROM trainers WHERE id=?");
         $stmt->bind_param("i", $id);
 
         if ($stmt->execute()) {

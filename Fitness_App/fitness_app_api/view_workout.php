@@ -4,13 +4,13 @@
     $id = $_GET['id'] ?? '';
 
     if ($id) {
-        $stmt = $conn->prepare("SELECT * FROM workouts WHERE id = ?");
+        $stmt = $con->prepare("SELECT * FROM workouts WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
         echo json_encode($result ?: ["status" => "error", "message" => "Workout not found"]);
     } else {
-        $result = $conn->query("SELECT * FROM workouts");
+        $result = $con->query("SELECT * FROM workouts");
         $workouts = [];
         while ($row = $result->fetch_assoc()) {
             $workouts[] = $row;

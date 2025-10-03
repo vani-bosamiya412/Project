@@ -4,7 +4,7 @@
     $user_id = $_GET['user_id'] ?? '';
 
     if ($user_id) {
-        $stmt = $conn->prepare("SELECT * FROM notifications WHERE user_id=? ORDER BY created_at DESC");
+        $stmt = $con->prepare("SELECT * FROM notifications WHERE user_id=? ORDER BY created_at DESC");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -15,7 +15,7 @@
         echo json_encode($notifications);
     } else {
         // Optional: view all notifications
-        $result = $conn->query("SELECT * FROM notifications ORDER BY created_at DESC");
+        $result = $con->query("SELECT * FROM notifications ORDER BY created_at DESC");
         $notifications = [];
         while ($row = $result->fetch_assoc()) {
             $notifications[] = $row;

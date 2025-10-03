@@ -9,7 +9,7 @@
     $music_url = $_POST['music_url'] ?? '';
 
     if ($id) {
-        $stmt = $conn->prepare("UPDATE music SET title=?, artist=?, genre=?, duration=?, music_url=? WHERE id=?");
+        $stmt = $con->prepare("UPDATE music SET title=?, artist=?, genre=?, duration=?, music_url=? WHERE id=?");
         $stmt->bind_param("sssisi", $title, $artist, $genre, $duration, $music_url, $id);
 
         if ($stmt->execute()) {

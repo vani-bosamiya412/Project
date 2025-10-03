@@ -10,7 +10,7 @@
     $video_url = $_POST['video_url'] ?? '';
 
     if ($title && $category && $difficulty && $duration && $trainer_id) {
-        $stmt = $conn->prepare("INSERT INTO workouts (title, description, category, difficulty, duration, trainer_id, video_url) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $con->prepare("INSERT INTO workouts (title, description, category, difficulty, duration, trainer_id, video_url) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssiss", $title, $description, $category, $difficulty, $duration, $trainer_id, $video_url);
         if ($stmt->execute()) {
             echo json_encode(["status" => "success", "message" => "Workout created"]);

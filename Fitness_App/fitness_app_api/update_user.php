@@ -5,10 +5,16 @@ $id = $_POST['id'] ?? '';
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
+$gender = $_POST['gender'] ?? null;
+$dob = $_POST['dob'] ?? null;
+$height = $_POST['height'] ?? null;
+$weight = $_POST['weight'] ?? null;
 
 if ($id) {
-    $stmt = $conn->prepare("UPDATE users SET name=?, email=?, password=? WHERE id=?");
-    $stmt->bind_param("sssi", $name, $email, $password, $id);
+    $stmt = $con->prepare("UPDATE users 
+                           SET name=?, email=?, password=?, height=?, weight=?, gender=?, date_of_birth=? 
+                           WHERE id=?");
+    $stmt->bind_param("sssssssi", $name, $email, $password, $height, $weight, $gender, $dob, $id);
 
     if ($stmt->execute()) {
         echo json_encode(["status" => "success", "message" => "User updated"]);

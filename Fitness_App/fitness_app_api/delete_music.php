@@ -4,7 +4,7 @@ include "connect.php";
 $id = $_POST['id'] ?? '';
 
 if ($id) {
-    $stmt = $conn->prepare("DELETE FROM music WHERE id=?");
+    $stmt = $con->prepare("DELETE FROM music WHERE id=?");
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {

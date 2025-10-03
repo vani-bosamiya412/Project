@@ -4,9 +4,13 @@ include "connect.php";
 $name = $_POST['name'] ?? '';
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
+$gender = $_POST['gender'] ?? null;
+$dob = $_POST['dob'] ?? null;
+$height = $_POST['height'] ?? null;
+$weight = $_POST['weight'] ?? null;
 
 if ($name && $email && $password) {
-    $check = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $check = $con->prepare("SELECT id FROM users WHERE email = ?");
     $check->bind_param("s", $email);
     $check->execute();
     $check->store_result();
@@ -14,8 +18,9 @@ if ($name && $email && $password) {
     if ($check->num_rows > 0) {
         echo json_encode(["status" => "error", "message" => "Email already exists"]);
     } else {
-        $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $name, $email, $password);
+        $stmt = $con->prepare("INSERT INTO users (name, email, password, height, weight, gender, date_of_birth) 
+                               VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssss", $name, $email, $password, $height, $weight, $gender, $dob);
 
         if ($stmt->execute()) {
             echo json_encode(["status" => "success", "message" => "User registered"]);

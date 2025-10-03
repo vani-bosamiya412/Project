@@ -7,13 +7,13 @@
 
     if ($title && $message) {
         if ($user_id) {
-            $stmt = $conn->prepare("INSERT INTO notifications (user_id, title, message) VALUES (?, ?, ?)");
+            $stmt = $con->prepare("INSERT INTO notifications (user_id, title, message) VALUES (?, ?, ?)");
             $stmt->bind_param("iss", $user_id, $title, $message);
         } else {
-            $users = $conn->query("SELECT id FROM users");
+            $users = $con->query("SELECT id FROM users");
             $success = true;
             while ($row = $users->fetch_assoc()) {
-                $stmt = $conn->prepare("INSERT INTO notifications (user_id, title, message) VALUES (?, ?, ?)");
+                $stmt = $con->prepare("INSERT INTO notifications (user_id, title, message) VALUES (?, ?, ?)");
                 $stmt->bind_param("iss", $row['id'], $title, $message);
                 if (!$stmt->execute()) $success = false;
             }
