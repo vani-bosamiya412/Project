@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2025 at 12:14 PM
+-- Generation Time: Oct 13, 2025 at 09:14 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -106,22 +106,38 @@ CREATE TABLE `trainers` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `trainers`
+--
+
+INSERT INTO `trainers` (`id`, `name`, `email`, `phone`, `specialty`, `experience`, `status`, `created_at`) VALUES
+(1, 'abc', 'abc@gmail.com', '1234567890', 'Yoga', 3, 'pending', '2025-10-11 08:42:26');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `vani_users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `vani_users` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `height` decimal(5,2) DEFAULT NULL,
   `weight` decimal(5,2) DEFAULT NULL,
   `gender` enum('male','female','other') DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vani_users`
+--
+
+INSERT INTO `vani_users` (`id`, `name`, `email`, `password`, `height`, `weight`, `gender`, `date_of_birth`) VALUES
+(4, 'Test User', 'test123@gmail.com', '$2y$10$4TslyIaZogY7oW7Og0W0e.0UDO88zk0S0RqdyMY.eAj', 163.00, 70.00, 'female', NULL),
+(5, 'Test User2', 'test12345@gmail.com', '$2y$10$ZZQZxlqXzajm0VTOwKAxVONZqL95UOWveLXxb10VJ0V', 163.00, 70.00, 'female', NULL),
+(7, 'Test User3', 'test1@gmail.com', '$2y$10$5ouvkDA6B.Nip1Yt2.vyye5Fadt0lAP6sNfPKmCW5tmOID/JINXAa', 163.00, 70.00, 'female', '2003-06-15');
 
 -- --------------------------------------------------------
 
@@ -181,9 +197,9 @@ ALTER TABLE `trainers`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `users`
+-- Indexes for table `vani_users`
 --
-ALTER TABLE `users`
+ALTER TABLE `vani_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -225,13 +241,13 @@ ALTER TABLE `nutrition_plans`
 -- AUTO_INCREMENT for table `trainers`
 --
 ALTER TABLE `trainers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `vani_users`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `vani_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `workouts`
@@ -247,19 +263,19 @@ ALTER TABLE `workouts`
 -- Constraints for table `activities`
 --
 ALTER TABLE `activities`
-  ADD CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `vani_users` (`id`);
 
 --
 -- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
-  ADD CONSTRAINT `fk_notifications_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `fk_notifications_user` FOREIGN KEY (`user_id`) REFERENCES `vani_users` (`id`);
 
 --
 -- Constraints for table `nutrition_plans`
 --
 ALTER TABLE `nutrition_plans`
-  ADD CONSTRAINT `fk_nutrition_plans_user` FOREIGN KEY (`nutritionist_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `fk_nutrition_plans_user` FOREIGN KEY (`nutritionist_id`) REFERENCES `vani_users` (`id`);
 
 --
 -- Constraints for table `workouts`

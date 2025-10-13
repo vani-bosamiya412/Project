@@ -8,7 +8,7 @@
     $cols = "id, name, email, password, height, weight, gender, date_of_birth";
 
     if ($id > 0) {
-        $stmt = $conn->prepare("SELECT $cols FROM users WHERE id = ?");
+        $stmt = $conn->prepare("SELECT $cols FROM vani_users WHERE id = ?");
         if (!$stmt) {
             http_response_code(500);
             echo json_encode(["status" => "error", "message" => "DB prepare failed"]);
@@ -27,7 +27,7 @@
         echo json_encode($user);
         exit;
     } else {
-        $result = $conn->query("SELECT $cols FROM users");
+        $result = $conn->query("SELECT $cols FROM vani_users");
         if (!$result) {
             http_response_code(500);
             echo json_encode(["status" => "error", "message" => "DB query failed"]);
