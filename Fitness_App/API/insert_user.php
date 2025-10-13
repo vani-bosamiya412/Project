@@ -10,7 +10,7 @@ $height = $_POST['height'] ?? null;
 $weight = $_POST['weight'] ?? null;
 
 if ($name && $email && $password) {
-    $check = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $check = $con->prepare("SELECT id FROM users WHERE email = ?");
     $check->bind_param("s", $email);
     $check->execute();
     $check->store_result();
@@ -21,7 +21,7 @@ if ($name && $email && $password) {
     } 
 
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $conn->prepare(
+    $stmt = $con->prepare(
         "INSERT INTO users (name, email, password, height, weight, gender, date_of_birth)
          VALUES (?, ?, ?, ?, ?, ?, ?)"
     );
