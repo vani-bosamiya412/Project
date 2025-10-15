@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2025 at 09:14 AM
+-- Generation Time: Oct 15, 2025 at 09:23 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -53,6 +53,14 @@ CREATE TABLE `music` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `music`
+--
+
+INSERT INTO `music` (`id`, `title`, `artist`, `genre`, `duration`, `music_url`, `created_at`, `updated_at`) VALUES
+(2, 'Test', 'test', 'Test', 15, 'music', '2025-10-14 06:29:56', '2025-10-14 06:29:56'),
+(3, 'Test2', 'test', 'Test', 15, 'music', '2025-10-14 06:31:34', '2025-10-14 06:31:34');
 
 -- --------------------------------------------------------
 
@@ -135,9 +143,9 @@ CREATE TABLE `vani_users` (
 --
 
 INSERT INTO `vani_users` (`id`, `name`, `email`, `password`, `height`, `weight`, `gender`, `date_of_birth`) VALUES
-(4, 'Test User', 'test123@gmail.com', '$2y$10$4TslyIaZogY7oW7Og0W0e.0UDO88zk0S0RqdyMY.eAj', 163.00, 70.00, 'female', NULL),
-(5, 'Test User2', 'test12345@gmail.com', '$2y$10$ZZQZxlqXzajm0VTOwKAxVONZqL95UOWveLXxb10VJ0V', 163.00, 70.00, 'female', NULL),
-(7, 'Test User3', 'test1@gmail.com', '$2y$10$5ouvkDA6B.Nip1Yt2.vyye5Fadt0lAP6sNfPKmCW5tmOID/JINXAa', 163.00, 70.00, 'female', '2003-06-15');
+(1, 'Test User', 'test123@gmail.com', '$2y$10$4TslyIaZogY7oW7Og0W0e.0UDO88zk0S0RqdyMY.eAj', 163.00, 70.00, 'female', NULL),
+(2, 'Test User2', 'test12345@gmail.com', '$2y$10$ZZQZxlqXzajm0VTOwKAxVONZqL95UOWveLXxb10VJ0V', 163.00, 70.00, 'female', NULL),
+(3, 'Test User3', 'test1@gmail.com', '$2y$10$5ouvkDA6B.Nip1Yt2.vyye5Fadt0lAP6sNfPKmCW5tmOID/JINXAa', 163.00, 70.00, 'female', '2003-06-15');
 
 -- --------------------------------------------------------
 
@@ -223,7 +231,7 @@ ALTER TABLE `activities`
 -- AUTO_INCREMENT for table `music`
 --
 ALTER TABLE `music`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `notifications`
